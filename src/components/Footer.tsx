@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { BrandMark } from './Logo'
 
 export default function Footer() {
   return (
@@ -6,22 +7,24 @@ export default function Footer() {
       <div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:grid-cols-3">
         <div>
           <div className="flex items-center gap-2">
-            <img src="/images/mascot.png" alt="" className="h-10 w-10" />
+            <BrandMark size={40} />
             <span className="font-display text-2xl font-black">
               <span className="text-coral">Soft</span>
               <span className="text-teal">Inst</span>
             </span>
           </div>
           <p className="mt-3 max-w-xs text-sm font-semibold leading-relaxed text-cream/70">
-            Pick real apps. Download one silent installer. SoftInst talks to Windows Package Manager — no accounts, no
-            catalog database, nothing fake.
+            Pick real apps. Download one silent installer. SoftInst detects winget, Chocolatey, Scoop or the vendor's
+            own installer on the target PC, and always ships a batch file next to the PowerShell script. Optional PC
+            tweaks ship with their rollback commands.
           </p>
         </div>
         <div>
           <p className="font-display text-sm font-black uppercase tracking-widest text-sun">Explore</p>
           <div className="mt-3 flex flex-col gap-2 font-extrabold">
-            <Link to="/" className="hover:text-sun">App picker</Link>
-            <Link to="/specs" className="hover:text-sun">PC specs checker</Link>
+            <Link to="/" className="hover:text-sun">Home</Link>
+            <Link to="/apps" className="hover:text-sun">Apps</Link>
+            <Link to="/tweaks" className="hover:text-sun">Tweaks</Link>
             <Link to="/how-it-works" className="hover:text-sun">How it works</Link>
             <Link to="/about" className="hover:text-sun">About</Link>
           </div>
@@ -29,8 +32,9 @@ export default function Footer() {
         <div>
           <p className="font-display text-sm font-black uppercase tracking-widest text-sun">Fine print</p>
           <p className="mt-3 text-sm font-semibold leading-relaxed text-cream/70">
-            SoftInst does not host software binaries. Each package is fetched from its official winget source on your
-            PC. Trademarks belong to their owners. Windows 10/11 required for the installer.
+            The installer asks for Administrator rights because package managers and PC tweaks need them. Tweaks change
+            real system settings and are reversible — rollback commands are embedded in the script. Nothing about you or
+            your PC is ever uploaded. Trademarks belong to their owners. Windows 10/11 required.
           </p>
         </div>
       </div>

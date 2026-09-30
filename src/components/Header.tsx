@@ -1,24 +1,28 @@
-import { Cpu, Download, HelpCircle, Menu, Sparkles, X } from 'lucide-react'
+import { Download, HelpCircle, Home, Menu, PackagePlus, Sparkles, Wrench, X } from 'lucide-react'
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { BrandMark } from './Logo'
 import { useSoftInst } from '../context/SoftInstContext'
 
 const links = [
-  { to: '/', label: 'Picker', icon: Download },
-  { to: '/specs', label: 'PC Specs', icon: Cpu },
+  { to: '/', label: 'Home', icon: Home },
+  { to: '/apps', label: 'Apps', icon: PackagePlus },
+  { to: '/tweaks', label: 'Tweaks', icon: Wrench },
   { to: '/how-it-works', label: 'How it works', icon: Sparkles },
   { to: '/about', label: 'About', icon: HelpCircle },
 ]
 
 export default function Header() {
-  const { selectedApps, setInstallerOpen } = useSoftInst()
+  const { selectedApps, selectedTweaks, hasWork, setInstallerOpen } = useSoftInst()
   const [open, setOpen] = useState(false)
+
+  const count = selectedApps.length + selectedTweaks.length
 
   return (
     <header className="sticky top-0 z-40 px-3 pt-3 sm:px-5">
       <div className="mx-auto flex max-w-7xl items-center gap-3 rounded-2xl border-[3px] border-ink bg-white px-3 py-2 gui-shadow">
         <Link to="/" className="flex items-center gap-2 pl-1">
-          <img src="/images/mascot.png" alt="" className="h-10 w-10 object-contain" />
+          <BrandMark size={40} />
           <span className="font-display text-xl font-black tracking-tight">
             <span className="text-coral">Soft</span>
             <span className="text-teal">Inst</span>
@@ -48,12 +52,18 @@ export default function Header() {
         <div className="ml-auto flex items-center gap-2">
           <button
             type="button"
-            onClick={() => selectedApps.length > 0 && setInstallerOpen(true)}
+            onClick={() => hasWork && setInstallerOpen(true)}
+            title={hasWork ? 'Your selection follows you across every page' : 'Tick some apps or tweaks first'}
             className="hidden items-center gap-2 rounded-xl border-[3px] border-ink bg-coral px-3 py-1.5 text-sm font-black text-white gui-shadow sm:flex hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[4px_4px_0_#1a1a2e]"
           >
             <Download className="h-4 w-4" />
             Get installer
-            <span className="rounded-md bg-ink px-1.5 py-0.5 text-xs text-sun">{selectedApps.length}</span>
+            <span
+              className="rounded-md bg-ink px-1.5 py-0.5 text-xs text-sun"
+              aria-label={`${count} items selected, kept across pages`}
+            >
+              {count}
+            </span>
           </button>
           <button
             type="button"
@@ -84,6 +94,11 @@ export default function Header() {
               {l.label}
             </NavLink>
           ))}
+          {hasWork && (
+            <p className="mt-1 border-t-2 border-ink/10 px-3 pb-1 pt-2 text-[11px] font-extrabold text-ink/60">
+              {count} item{count === 1 ? '' : 's'} ticked — your selection carries over between Apps and Tweaks.
+            </p>
+          )}
         </div>
       )}
     </header>

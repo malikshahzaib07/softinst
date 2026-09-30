@@ -207,13 +207,6 @@ export function checkCompat(app: AppSoftware, specs: PCSpecs | null): CompatResu
     if (level !== 'no') level = 'warn'
   }
 
-  if (app.minDiskMB >= 1000 && specs.storageQuotaGB != null && specs.storageQuotaGB < app.minDiskMB / 1024) {
-    reasons.push(`Wants ~${Math.ceil(app.minDiskMB / 1024)} GB disk. Browser storage quota looks tight.`)
-    if (level !== 'no') level = 'warn'
-  }
-
-  if (app.notes) reasons.push(app.notes)
-
   if (level === 'ok' && reasons.length === 0) {
     reasons.push('Looks good on this PC.')
   }

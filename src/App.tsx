@@ -6,9 +6,10 @@ import InstallerDock from './components/InstallerDock'
 import InstallerModal from './components/InstallerModal'
 import { SoftInstProvider } from './context/SoftInstContext'
 import AboutPage from './pages/AboutPage'
+import AppsPage from './pages/AppsPage'
 import HomePage from './pages/HomePage'
+import TweaksPage from './pages/TweaksPage'
 import HowPage from './pages/HowPage'
-import SpecsPage from './pages/SpecsPage'
 
 export default function App() {
   return (
@@ -21,7 +22,8 @@ export default function App() {
             <main className="flex-1">
               <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/specs" element={<SpecsPage />} />
+                <Route path="/apps" element={<AppsPage />} />
+                <Route path="/tweaks" element={<TweaksPage />} />
                 <Route path="/how-it-works" element={<HowPage />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
