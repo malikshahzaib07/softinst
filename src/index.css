@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  --color-ink: #1a1a2e;
+  --color-cream: #fff4e4;
+  --color-coral: #ff5a5f;
+  --color-teal: #00c2b8;
+  --color-sun: #ffd166;
+  --color-grape: #7b61ff;
+  --color-lime: #7dde92;
+  --color-pink: #ff8dc7;
+  --color-sky: #4cc9f0;
+  --color-peach: #ffb4a2;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #fff4e4;
+  color: #1a1a2e;
+  font-family: "Nunito", ui-sans-serif, system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #ffd166;
+  color: #1a1a2e;
+}
+
+.font-display {
+  font-family: "Outfit", ui-sans-serif, system-ui, sans-serif;
+}
+
+.gui-shadow {
+  box-shadow: 6px 6px 0 #1a1a2e;
+}
+
+.gui-shadow-lg {
+  box-shadow: 10px 10px 0 #1a1a2e;
+}
+
+.checker-bg {
+  background-image:
+    linear-gradient(45deg, rgba(26, 26, 46, 0.04) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(26, 26, 46, 0.04) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(26, 26, 46, 0.04) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(26, 26, 46, 0.04) 75%);
+  background-size: 28px 28px;
+  background-position: 0 0, 0 14px, 14px -14px, -14px 0;
+}
+
+@keyframes blob-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(40px, -30px) scale(1.08);
+  }
+  66% {
+    transform: translate(-30px, 20px) scale(0.94);
+  }
+}
+
+@keyframes scan-sweep {
+  0% {
+    transform: translateY(-20%) rotate(0deg);
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(120%) rotate(8deg);
+    opacity: 0.2;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.blob {
+  animation: blob-float 14s ease-in-out infinite;
+}
+
+.blob-delay {
+  animation-delay: -5s;
+}
+
+.scan-line {
+  animation: scan-sweep 1.6s ease-in-out infinite;
+}
+
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #1a1a2e transparent;
+}
+
+.terminal {
+  font-family: ui-monospace, "Cascadia Code", "SFMono-Regular", Menlo, monospace;
+}
+
